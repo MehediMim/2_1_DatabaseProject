@@ -171,54 +171,6 @@ router.post('/complete-order', authorization, async (req, res) => {
     }
 });
 
-// router.post('/complete-order', authorization, async (req, res) => {
-//     console.log("got signal");
-//     const { user_id } = req.user; // Ensure this extracts the user ID correctly
-//     const { total_price, cartItems, shippingInfo, paymentInfo, cardInfo } = req.body;
-//     console.log(user_id, total_price, cartItems, shippingInfo, paymentInfo, cardInfo);
-
-//     try {
-//         // Prepare the cartItems in the format expected by the PostgreSQL function
-//         // Depending on how your function expects the cartItems array, you might need to serialize it
-//         // This example assumes your function can accept a JSON representation of cartItems
-//         const cartItemsFormatted = JSON.stringify(cartItems);
-
-//         // Call the PL/pgSQL function
-//         const functionCallQuery = `
-//             SELECT complete_order_function(
-//                 $1, $2, $3::cart_item_type[], $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16
-//             ) AS order_id;
-//         `;
-//         const queryParams = [
-//             user_id,
-//             total_price,
-//             cartItemsFormatted,
-//             shippingInfo.addressLine1,
-//             shippingInfo.addressLine2,
-//             shippingInfo.city,
-//             shippingInfo.division,
-//             shippingInfo.zipCode,
-//             shippingInfo.shippingDate,
-//             paymentInfo.amount,
-//             paymentInfo.paymentMethod,
-//             cardInfo.cardNumber,
-//             cardInfo.cardHolderName,
-//             cardInfo.expiryMonth,
-//             cardInfo.expiryYear,
-//             cardInfo.cvv
-//         ];
-
-//         const result = await pool.query(functionCallQuery, queryParams);
-//         const orderId = result.rows[0].order_id;
-
-//         res.json({ message: 'Order completed successfully', orderId });
-//     } catch (error) {
-//         console.error('Error processing order with PL/pgSQL function:', error);
-//         res.status(500).send('Server error during order processing with function');
-//     }
-// });
-
-
 
 
 

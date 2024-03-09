@@ -210,12 +210,12 @@ const handleSubmit = async (event) => {
                     <button className={styles.animated_button} onClick={logout}>LOG OUT</button>
                 </div>
 
-                {/* <div class={styles.order_info}>
+                <div class={styles.order_info}>
                     <h2 className={styles.title}>Order Information</h2>
                     <p><strong>Order ID:</strong> 123456</p>
                     <p><strong>Item:</strong> Example Item</p>
                     <p><strong>Selling Price:</strong> $100</p>
-                </div> */}
+                </div>
             </div>
         </div>
     );

@@ -8,7 +8,7 @@ const validinfo =require('../middleware/validinfoLogIn')
 router.post('/', async (req, res) => {
     try {
         const { identity, password } = req.body;
-
+        // Adjust the loginQuery to select the user where identity matches either email or phone_number
         const loginQuery = `
           SELECT *
           FROM users
@@ -16,24 +16,26 @@ router.post('/', async (req, res) => {
         `;
         const result = await pool.query(loginQuery, [identity]);
         if (result.rows.length > 0) {
+            // Assuming the first row returned is the user
             const user = result.rows[0];
   
-
-            const isMatch = await bcrypt.compare(password, user.password_hash);
+            // Use bcrypt to compare the provided password with the stored hash
+            const isMatch = await bcrypt.compare(password, user.password_hash);//  mehedi mim
             // const isMatch = (password === user.password_hash);
 
 
             if (isMatch) {
-
-                const token = jwtGenerator(user.user_id); 
+                // Password matches, log the user in
+                // You might want to generate a session or a token here
+                const token = jwtGenerator(user.user_id); // Corrected variable reference
                 
                 res.json({token});
             } else {
-
+                // Password does not match
                 res.status(401).send("Password is incorrect");
             }
         } else {
-
+            // No user found with the given identity
             res.status(404).send("User not found");
         }
     } catch (error) {

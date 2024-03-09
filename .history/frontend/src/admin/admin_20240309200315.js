@@ -21,7 +21,9 @@ const Admin = () => {
     setIsAuthenticated(true);
     const fetchUrl = `http://localhost:5000/admin/orders?month=${encodeURIComponent(selectedMonth)}`;
     const response = await fetch(fetchUrl, {
-      
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('adminToken')}`, // Adjust according to your actual token storage method
+      },
     });
 
     if (response.ok) {

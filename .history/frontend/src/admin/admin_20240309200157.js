@@ -12,16 +12,18 @@ const Admin = () => {
 
   const authenticateAndFetchOrders = async (selectedMonth = '') => {
     // Simplified the prompt for the example. Consider a more secure authentication method for production.
-    // const password = prompt("Enter the admin password:");
-    // if (password !== "admin") {
-    //   alert("Incorrect password.");
-    //   return;
-    // }
+    const password = prompt("Enter the admin password:");
+    if (password !== "admin") {
+      alert("Incorrect password.");
+      return;
+    }
 
     setIsAuthenticated(true);
     const fetchUrl = `http://localhost:5000/admin/orders?month=${encodeURIComponent(selectedMonth)}`;
     const response = await fetch(fetchUrl, {
-      
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('adminToken')}`, // Adjust according to your actual token storage method
+      },
     });
 
     if (response.ok) {
