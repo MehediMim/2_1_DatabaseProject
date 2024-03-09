@@ -1,0 +1,49 @@
+.adminContainer {
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    width: 80%;
+  }
+  
+  h1 {
+    color: #333;
+    text-align: center;
+  }
+  
+  p {
+    color: #666;
+    text-align: center;
+  }
+  
+  h2 {
+    color: #444;
+    margin-top: 20px;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .order {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .eachorder {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+  }
+  
+  .eachorder:hover {
+    background-color: #f9f9f9;
+  }
+  

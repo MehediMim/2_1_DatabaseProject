@@ -38,15 +38,13 @@ const Admin = () => {
       <h1>Admin Dashboard</h1>
       <p>Welcome to the Admin Dashboard.</p>
       <h2>Orders</h2>
-      <div className={styles.container}>
-      <ul className={styles.order}>
+      <ul>
         {orders.map((order) => (
-          <li key={order.order_id} className={styles.eachorder}>
+          <li key={order.order_id}>
             Order ID: {order.order_id}, Total Price: {order.total_price}
           </li>
         ))}
       </ul>
-      </div>
       {/* More admin functionalities here */}
     </div>
   );

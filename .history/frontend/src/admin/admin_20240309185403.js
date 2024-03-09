@@ -1,6 +1,3 @@
-import React, { Fragment, useState, useEffect } from "react";
-import styles from './admin.module.css';
-
 const Admin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [orders, setOrders] = useState([]);
@@ -17,8 +14,10 @@ const Admin = () => {
 
   const fetchOrders = async () => {
     // Example URL - adjust based on your actual API
-    const response = await fetch('http://localhost:5000/admin/orders', {
+    const response = await fetch('/api/orders', {
       headers: {
+        'Authorization': `Bearer ${localStorage.getItem('adminToken')}`, // Assuming you store an admin token in localStorage
+        'Content-Type': 'application/json',
       },
     });
     if (response.ok) {
@@ -38,15 +37,13 @@ const Admin = () => {
       <h1>Admin Dashboard</h1>
       <p>Welcome to the Admin Dashboard.</p>
       <h2>Orders</h2>
-      <div className={styles.container}>
-      <ul className={styles.order}>
+      <ul>
         {orders.map((order) => (
-          <li key={order.order_id} className={styles.eachorder}>
+          <li key={order.order_id}>
             Order ID: {order.order_id}, Total Price: {order.total_price}
           </li>
         ))}
       </ul>
-      </div>
       {/* More admin functionalities here */}
     </div>
   );

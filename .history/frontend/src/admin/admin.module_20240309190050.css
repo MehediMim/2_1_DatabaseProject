@@ -1,0 +1,14 @@
+.adminContainer{
+}
+.order{
+    display: flex;
+    background-color: black;
+    margin: 10px;
+}
+.container{
+    display: flex;
+}
+.eachorder{
+    display: flex;
+    margin: 10px;
+}
