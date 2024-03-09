@@ -1,3 +1,59 @@
+
+
+CREATE SEQUENCE items_item_id_seq START 1;
+CREATE TABLE items (
+    item_id INT  DEFAULT nextval('items_item_id_seq') PRIMARY KEY,
+    user_id INT NOT NULL,
+    category_id INT NOT NULL,
+    subcategory_id INT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    image TEXT ,
+    price DECIMAL(10, 0) NOT NULL CHECK (price >= 0),
+    status VARCHAR(50),
+    date_Posted TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (category_id) REFERENCES categories(category_id)
+);
+
+
+
+SELECT setval('items_item_id_seq', COALESCE((SELECT MAX(item_id) FROM items), 1), false);
+
+--for category
+
+CREATE TABLE categories (
+    category_id INT  PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL
+);
+
+
+--for subcategory
+
+CREATE TABLE subcategories (
+    subcategory_id INT NOT NULL,
+    category_id INT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    PRIMARY KEY (category_id, subcategory_id),
+    FOREIGN KEY (category_id) REFERENCES categories(category_id)
+);
+
+CREATE TABLE images (
+    image_id SERIAL,
+    item_id INT NOT NULL,
+    image_url TEXT NOT NULL,
+    PRIMARY KEY (image_id, item_id),
+    FOREIGN KEY (item_id) REFERENCES items(item_id)
+);
+
+
+
+
+
+
+
+
 INSERT INTO items (user_id, category_id, subcategory_id, name, description, image, price, status) VALUES
   (1, 1, 1, 'Samsung Galaxy S21', 'Latest model with 5G connectivity.', 'url_to_samsung_galaxy_s21_image.jpg', 999, 'Available'),
   (2, 2, 7, 'Dyson V11 Vacuum Cleaner', 'Powerful suction, cord-free vacuum.', 'url_to_dyson_v11_image.jpg', 599, 'Sold'),

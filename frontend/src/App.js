@@ -21,6 +21,7 @@ import MyList from './myList/myList';
 import Messaging from './messaging/messaging';
 import SearchResults from './seach/search';
 import ItemBig from './itemBig/itemBig';
+
 import Admin from './admin/admin';
 import Checkout from './checkout/checkout';
 import Store from './store/store';
@@ -74,6 +75,7 @@ function App() {
         <Route path="/search" element={<SearchResults />} />
         <Route path="/item/:itemId" element={<Bigitem />} />
         <Route path="*" element={<Navigate replace to="/" />} />
+        <Route path="/admin" element={<admin />} />
       </Routes>
     </Router>
   );

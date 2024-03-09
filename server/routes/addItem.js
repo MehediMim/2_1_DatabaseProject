@@ -162,7 +162,7 @@ router.post('/addItem', authorization, async (req, res) => {
     const user_id = req.user; // Assuming req.user contains the user_id
     const { itemName, itemDescription, itemPrice, itemImage, itemCategory, itemSubcategory } = req.body;
     const status = "available"; // Set status to "available" directly
-
+    console.log("Request received for Add", req.body);
     // Define a single SQL query using CTEs to insert the new item
     const query = `
         WITH category_id AS (
