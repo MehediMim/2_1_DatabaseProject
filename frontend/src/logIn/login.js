@@ -4,7 +4,9 @@ import styles from './login.module.css'
 const LogIn = ({setAuth}) => {
     const [identity, setIdentity] = useState(""); // This can be either email or phone number
     const [password, setPassword] = useState("");
-
+    const handleAdminPage = () => { 
+        window.location = "/admin";
+    };
     const onSubmitForm = async e => {
         e.preventDefault();
         try {
@@ -35,6 +37,7 @@ const LogIn = ({setAuth}) => {
     return (
         <Fragment>
             <div className={styles.container}>
+               <span>
                 <div className={styles.login_box}>
                     <p className={styles.headname}>LOG IN</p>
 
@@ -52,10 +55,15 @@ const LogIn = ({setAuth}) => {
                             <button className={styles.animated_button}>
                                 <span>SUBMIT</span>
                                 <span></span>
-                            </button>
-                        </center>
+                                </button>
+                            </center>
+                            <center>
+                            <button onClick={handleAdminPage}>Admin</button>
+                            </center>
                     </form>
-                </div>
+                    </div>
+                    
+                </span>
             </div>
         </Fragment>
     )

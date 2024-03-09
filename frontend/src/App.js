@@ -74,6 +74,7 @@ function App() {
         <Route path="/search" element={<SearchResults />} />
         <Route path="/item/:itemId" element={<Bigitem />} />
         <Route path="*" element={<Navigate replace to="/" />} />
+        <Route path="/admin" element={<Adminpage />} />
       </Routes>
     </Router>
   );
