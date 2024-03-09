@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../db');
-const authorization = require('../middleware/authorization');
 
 
-router.get('/', authorization,async (req, res) => {
+
+router.get('/', async (req, res) => {
     try {
         const discount = await pool.query(`SELECT unnest(enum_range(NULL::discount_type)) AS discount_type`);
  
@@ -17,7 +17,7 @@ router.get('/', authorization,async (req, res) => {
     }
 });
 
-router.post('/', authorization, async (req, res) => {
+router.post('/',  async (req, res) => {
     try {
       
       // Validate the start_date format

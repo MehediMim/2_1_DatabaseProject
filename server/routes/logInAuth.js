@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
             const user = result.rows[0];
   
             // Use bcrypt to compare the provided password with the stored hash
-            const isMatch = await bcrypt.compare(password, user.password_hash);//  mehedi mim
+           const isMatch = await bcrypt.compare(password, user.password_hash);//  mehedi mim
             // const isMatch = (password === user.password_hash);
 
 
