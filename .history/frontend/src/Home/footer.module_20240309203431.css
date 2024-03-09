@@ -3,9 +3,9 @@
     height: 320px;
     display: flex;
     padding: 20px;
+    padding-bottom: 20px;
 }
 .container2{
-    padding-bottom: 20px;
     background-color: teal;
 
 }

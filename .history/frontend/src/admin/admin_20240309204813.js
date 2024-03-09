@@ -240,43 +240,7 @@ const Admin = () => {
 
       </div>
       <div className={styles.statictics}>
-        <div className={styles.helo}>
-          <input type="month" value={selectedMonth} onChange={handleMonthChange} />
-          <button onClick={fetchOrdersForMonth}>Show Orders</button>
-        </div>
-        {isAuthenticated ? (
-          <div className={styles.ordersContainer}>
-            {orders.length > 0 ? (
-              orders.map((order) => (
-                <div key={order.order_id} className={styles.orderItem}>
-                  <h3>Order ID: {order.order_id}</h3>
-                  <p>User ID: {order.user_id}</p>
-                  <p>Total Price: {order.total_price}</p>
-                  <p>Created At: {new Date(order.created_at).toLocaleString()}</p>
-                  <p>Status: {order.status}</p>
-                  <div>
-                    <h4>Items:</h4>
-                    {Array.isArray(order.order_details) ? (
-                      order.order_details.map((detail, index) => (
-                        <div key={index}>
-                          <p>Item ID: {detail.item_id}</p>
-                          <p>Quantity: {detail.quantity}</p>
-                          <p>Price: {detail.price}</p>
-                        </div>
-                      ))
-                    ) : (
-                      <p>No item details available</p>
-                    )}
-                  </div>
-                </div>
-              ))
-            ) : (
-              <p>No orders found for the selected month.</p>
-            )}
-          </div>
-        ) : (
-          <p>Access Denied</p>
-        )}
+
       </div>
     </Fragment>
   );

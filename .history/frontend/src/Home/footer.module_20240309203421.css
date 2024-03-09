@@ -1,11 +1,10 @@
 .container{
     background-color: teal;
-    height: 320px;
+    height: 340px;
     display: flex;
     padding: 20px;
 }
 .container2{
-    padding-bottom: 20px;
     background-color: teal;
 
 }

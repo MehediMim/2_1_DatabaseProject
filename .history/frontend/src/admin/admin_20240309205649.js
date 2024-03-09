@@ -240,7 +240,7 @@ const Admin = () => {
 
       </div>
       <div className={styles.statictics}>
-        <div className={styles.helo}>
+        <div>
           <input type="month" value={selectedMonth} onChange={handleMonthChange} />
           <button onClick={fetchOrdersForMonth}>Show Orders</button>
         </div>

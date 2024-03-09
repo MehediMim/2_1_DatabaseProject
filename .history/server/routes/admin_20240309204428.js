@@ -4,10 +4,9 @@ const pool = require('../db');
 const authorization = require('../middleware/authorization')
 
 // In your server-side route handler file (e.g., routes/admin.js)
-router.get('/orders', async (req, res) => {
-
+router.get('/orders', authorization, async (req, res) => {
     const { month } = req.query; // Expected to be in "YYYY-MM" format
-    console.log(month);
+
     try {
         const query = `
             SELECT 
@@ -27,7 +26,6 @@ router.get('/orders', async (req, res) => {
         // If month is not provided, it will result in an error or empty response.
         // Consider handling this case differently based on your requirements.
         const { rows } = await pool.query(query, [month]);
-        console.log(rows);
         res.json(rows);
     } catch (err) {
         console.error(err.message);

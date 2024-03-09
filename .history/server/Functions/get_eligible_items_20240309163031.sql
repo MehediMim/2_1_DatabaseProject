@@ -5,12 +5,12 @@ AS $$
 DECLARE
     discount_type_value discount_type;
 BEGIN
-
+    -- Get the discount type for the given discount_id
     SELECT d.discount_type INTO discount_type_value
     FROM discounts d
     WHERE d.discount_id = get_eligible_items.discount_id;
 
-
+    -- Check the discount type and get eligible items accordingly
     RETURN QUERY
     WITH subcategory_sales AS (
         SELECT i.subcategory_id, SUM(CASE WHEN i.status = 'sold' AND id.discount_id = get_eligible_items.discount_id THEN i.price ELSE 0 END) AS discounted_sales,

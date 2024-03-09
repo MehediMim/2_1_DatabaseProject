@@ -27,7 +27,6 @@ router.get('/orders', async (req, res) => {
         // If month is not provided, it will result in an error or empty response.
         // Consider handling this case differently based on your requirements.
         const { rows } = await pool.query(query, [month]);
-        console.log(rows);
         res.json(rows);
     } catch (err) {
         console.error(err.message);

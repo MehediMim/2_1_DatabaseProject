@@ -4,7 +4,6 @@ import styles from "./admin.module.css";
 const Admin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [discountTypeData, setDiscountTypeData] = useState([]);
-  const [orders, setOrders] = useState([]);
   const [discountData, setDiscountData] = useState({
     discountType: "",
     description: "",
@@ -12,37 +11,6 @@ const Admin = () => {
     duration_days: "",
     duration_hours: "",
   });
-
-  const [selectedMonth, setSelectedMonth] = useState('');
-
-  const handleMonthChange = (event) => {
-    setSelectedMonth(event.target.value);
-  };
-
-  const fetchOrdersForMonth = async () => {
-    if (!selectedMonth) return; // Don't fetch if no month is selected
-
-    const fetchUrl = `http://localhost:5000/admin/orders?month=${encodeURIComponent(selectedMonth)}`;
-    try {
-      const response = await fetch(fetchUrl, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('adminToken')}`, // Adjust according to your actual token storage method
-          // Additional headers as needed
-        },
-      });
-
-      if (!response.ok) throw new Error('Failed to fetch orders');
-
-      const ordersData = await response.json();
-      setOrders(ordersData); // Update the orders state with the fetched data
-      setIsAuthenticated(true); // Update based on actual authentication logic
-    } catch (error) {
-      console.error('Error fetching orders:', error);
-    }
-  };
-
-
 
   useEffect(() => {
     const fetchDiscountType = async () => {
@@ -97,7 +65,7 @@ const Admin = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Network response was not ok: ${response.statusText}');
+        throw new Error(Network response was not ok: ${response.statusText});
       }
       const data = await response.json();
       console.log("Response data:", data);
@@ -109,7 +77,7 @@ const Admin = () => {
     const password = prompt("Enter the admin password:");
     if (password === "admin") {
       //const token = jwtGenerator(user.user_id); // Corrected variable reference
-
+              
       setIsAuthenticated(true);
     } else {
       alert("Incorrect password.");
@@ -237,46 +205,7 @@ const Admin = () => {
             Submit
           </button>
         </form>
-
-      </div>
-      <div className={styles.statictics}>
-        <div className={styles.helo}>
-          <input type="month" value={selectedMonth} onChange={handleMonthChange} />
-          <button onClick={fetchOrdersForMonth}>Show Orders</button>
-        </div>
-        {isAuthenticated ? (
-          <div className={styles.ordersContainer}>
-            {orders.length > 0 ? (
-              orders.map((order) => (
-                <div key={order.order_id} className={styles.orderItem}>
-                  <h3>Order ID: {order.order_id}</h3>
-                  <p>User ID: {order.user_id}</p>
-                  <p>Total Price: {order.total_price}</p>
-                  <p>Created At: {new Date(order.created_at).toLocaleString()}</p>
-                  <p>Status: {order.status}</p>
-                  <div>
-                    <h4>Items:</h4>
-                    {Array.isArray(order.order_details) ? (
-                      order.order_details.map((detail, index) => (
-                        <div key={index}>
-                          <p>Item ID: {detail.item_id}</p>
-                          <p>Quantity: {detail.quantity}</p>
-                          <p>Price: {detail.price}</p>
-                        </div>
-                      ))
-                    ) : (
-                      <p>No item details available</p>
-                    )}
-                  </div>
-                </div>
-              ))
-            ) : (
-              <p>No orders found for the selected month.</p>
-            )}
-          </div>
-        ) : (
-          <p>Access Denied</p>
-        )}
+       
       </div>
     </Fragment>
   );

@@ -11,8 +11,8 @@ router.get('/getCategory', async (req, res) => {
             FROM categories
             ORDER BY name;`
         );
-        console.log(categoryList.rows); 
-        res.json(categoryList.rows); 
+        console.log(categoryList.rows); // Log the fetched category list
+        res.json(categoryList.rows); // Send the category list back to the client
     } catch (err) {
         console.error(err.message);
         res.status(500).json("server error");

@@ -4,9 +4,9 @@ import styles from './login.module.css'
 const LogIn = ({setAuth}) => {
     const [identity, setIdentity] = useState(""); // This can be either email or phone number
     const [password, setPassword] = useState("");
-    // const handleAdminPage = () => { 
-    //     window.location = "/admin";
-    // };
+    const handleAdminPage = () => { 
+        window.location = "/admin";
+    };
     const onSubmitForm = async e => {
         e.preventDefault();
         try {

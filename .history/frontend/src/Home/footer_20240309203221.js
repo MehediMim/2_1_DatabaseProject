@@ -36,7 +36,7 @@ const footer = () => {
         </div>
       </div>
       <center>
-                            <button onClick={handleAdminPage} className={styles.link}>Admin</button>
+                            <button onClick={handleAdminPage}>Admin</button>
                             </center>
       </div>
     </Fragment>
